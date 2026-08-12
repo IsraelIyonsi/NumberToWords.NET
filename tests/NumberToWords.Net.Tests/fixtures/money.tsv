@@ -1,0 +1,24 @@
+# amount	currency	style	expected
+# Format: tab-separated. currency is NGN (Nigerian naira/kobo) or USD (US dollars/cents).
+# style is American or British. Lines starting with # are comments.
+0.00	NGN	American	zero naira
+1234.50	NGN	American	one thousand two hundred thirty-four naira and fifty kobo
+1.00	NGN	American	one naira
+0.01	NGN	American	zero naira and one kobo
+0.99	NGN	American	zero naira and ninety-nine kobo
+1.01	NGN	American	one naira and one kobo
+100.00	NGN	American	one hundred naira
+1000000.00	NGN	American	one million naira
+-50.25	NGN	American	negative fifty naira and twenty-five kobo
+-0.001	NGN	American	zero naira
+-0.005	NGN	American	negative zero naira and one kobo
+1.995	NGN	American	two naira
+99.995	NGN	American	one hundred naira
+1234.50	NGN	British	one thousand two hundred and thirty-four naira and fifty kobo
+1.00	USD	American	one dollar
+2.00	USD	American	two dollars
+1.01	USD	American	one dollar and one cent
+0.01	USD	American	zero dollars and one cent
+1234.56	USD	American	one thousand two hundred thirty-four dollars and fifty-six cents
+1.995	USD	American	two dollars
+-1.00	USD	American	negative one dollar

@@ -1,0 +1,51 @@
+# number	style	expected
+# Format: tab-separated. style is American or British. Lines starting with # are comments.
+0	American	zeroth
+1	American	first
+2	American	second
+3	American	third
+4	American	fourth
+5	American	fifth
+6	American	sixth
+7	American	seventh
+8	American	eighth
+9	American	ninth
+10	American	tenth
+11	American	eleventh
+12	American	twelfth
+13	American	thirteenth
+15	American	fifteenth
+19	American	nineteenth
+20	American	twentieth
+21	American	twenty-first
+22	American	twenty-second
+23	American	twenty-third
+25	American	twenty-fifth
+29	American	twenty-ninth
+30	American	thirtieth
+40	American	fortieth
+50	American	fiftieth
+60	American	sixtieth
+70	American	seventieth
+80	American	eightieth
+90	American	ninetieth
+99	American	ninety-ninth
+100	American	one hundredth
+101	American	one hundred first
+121	American	one hundred twenty-first
+1000	American	one thousandth
+1001	American	one thousand first
+2000	American	two thousandth
+1000000	American	one millionth
+1000000000	American	one billionth
+1000000000000	American	one trillionth
+1000000000000000	American	one quadrillionth
+1000000000000000000	American	one quintillionth
+-1	American	negative first
+-21	American	negative twenty-first
+-100	American	negative one hundredth
+110	British	one hundred and tenth
+121	British	one hundred and twenty-first
+1001	British	one thousand and first
+1000000	British	one millionth
+2000050	British	two million and fiftieth

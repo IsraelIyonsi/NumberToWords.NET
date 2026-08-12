@@ -1,0 +1,114 @@
+# number	style	expected
+# Format: tab-separated. style is American or British. Lines starting with # are comments.
+0	American	zero
+1	American	one
+2	American	two
+3	American	three
+4	American	four
+5	American	five
+6	American	six
+7	American	seven
+8	American	eight
+9	American	nine
+10	American	ten
+11	American	eleven
+12	American	twelve
+13	American	thirteen
+14	American	fourteen
+15	American	fifteen
+16	American	sixteen
+17	American	seventeen
+18	American	eighteen
+19	American	nineteen
+20	American	twenty
+21	American	twenty-one
+30	American	thirty
+35	American	thirty-five
+40	American	forty
+45	American	forty-five
+50	American	fifty
+56	American	fifty-six
+60	American	sixty
+67	American	sixty-seven
+70	American	seventy
+78	American	seventy-eight
+80	American	eighty
+89	American	eighty-nine
+90	American	ninety
+99	American	ninety-nine
+100	American	one hundred
+101	American	one hundred one
+110	American	one hundred ten
+111	American	one hundred eleven
+120	American	one hundred twenty
+121	American	one hundred twenty-one
+199	American	one hundred ninety-nine
+200	American	two hundred
+250	American	two hundred fifty
+305	American	three hundred five
+999	American	nine hundred ninety-nine
+1000	American	one thousand
+1001	American	one thousand one
+1010	American	one thousand ten
+1011	American	one thousand eleven
+1050	American	one thousand fifty
+1100	American	one thousand one hundred
+1101	American	one thousand one hundred one
+1234	American	one thousand two hundred thirty-four
+2000	American	two thousand
+2005	American	two thousand five
+9999	American	nine thousand nine hundred ninety-nine
+10000	American	ten thousand
+10021	American	ten thousand twenty-one
+100000	American	one hundred thousand
+100234	American	one hundred thousand two hundred thirty-four
+999999	American	nine hundred ninety-nine thousand nine hundred ninety-nine
+1000000	American	one million
+1000001	American	one million one
+1000023	American	one million twenty-three
+1234567	American	one million two hundred thirty-four thousand five hundred sixty-seven
+2000050000	American	two billion fifty thousand
+1000000000	American	one billion
+1000000001	American	one billion one
+1000000000000	American	one trillion
+1000000000001	American	one trillion one
+1000000000000000	American	one quadrillion
+1000000000000001	American	one quadrillion one
+1000000000000000000	American	one quintillion
+1000000000000000001	American	one quintillion one
+9223372036854775807	American	nine quintillion two hundred twenty-three quadrillion three hundred seventy-two trillion thirty-six billion eight hundred fifty-four million seven hundred seventy-five thousand eight hundred seven
+-1	American	negative one
+-21	American	negative twenty-one
+-100	American	negative one hundred
+-1234	American	negative one thousand two hundred thirty-four
+-1000000	American	negative one million
+-9223372036854775808	American	negative nine quintillion two hundred twenty-three quadrillion three hundred seventy-two trillion thirty-six billion eight hundred fifty-four million seven hundred seventy-five thousand eight hundred eight
+100	British	one hundred
+101	British	one hundred and one
+110	British	one hundred and ten
+111	British	one hundred and eleven
+120	British	one hundred and twenty
+121	British	one hundred and twenty-one
+199	British	one hundred and ninety-nine
+1000	British	one thousand
+1001	British	one thousand and one
+1005	British	one thousand and five
+1010	British	one thousand and ten
+1011	British	one thousand and eleven
+1050	British	one thousand and fifty
+1100	British	one thousand one hundred
+1101	British	one thousand one hundred and one
+1234	British	one thousand two hundred and thirty-four
+2000	British	two thousand
+2005	British	two thousand and five
+100000	British	one hundred thousand
+100234	British	one hundred thousand two hundred and thirty-four
+1000000	British	one million
+1000001	British	one million and one
+1000023	British	one million and twenty-three
+2000050	British	two million and fifty
+1234567	British	one million two hundred and thirty-four thousand five hundred and sixty-seven
+1000000000	British	one billion
+1000000000000	British	one trillion
+-1234	British	negative one thousand two hundred and thirty-four
+-21	British	negative twenty-one
