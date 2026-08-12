@@ -11,10 +11,11 @@
 1000000.00	NGN	American	one million naira
 -50.25	NGN	American	negative fifty naira and twenty-five kobo
 -0.001	NGN	American	zero naira
--0.005	NGN	American	negative zero naira and one kobo
+-0.005	NGN	American	negative one kobo
 1.995	NGN	American	two naira
 99.995	NGN	American	one hundred naira
 1234.50	NGN	British	one thousand two hundred and thirty-four naira and fifty kobo
+1000001.01	NGN	British	one million and one naira and one kobo
 1.00	USD	American	one dollar
 2.00	USD	American	two dollars
 1.01	USD	American	one dollar and one cent

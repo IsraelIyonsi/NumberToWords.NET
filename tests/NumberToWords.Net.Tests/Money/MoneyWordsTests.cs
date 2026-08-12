@@ -68,6 +68,23 @@ public class MoneyWordsTests
     }
 
     [Fact]
+    public void ToWords_NegativeAmountWithZeroMajorUnits_OmitsZeroMajorClause()
+    {
+        string words = MoneyToWordsConverter.ToWords(-0.005m);
+
+        Assert.Equal("negative one kobo", words);
+        Assert.DoesNotContain("zero", words, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void ToWords_PositiveAmountWithZeroMajorUnits_KeepsZeroMajorClause()
+    {
+        string words = MoneyToWordsConverter.ToWords(0.01m);
+
+        Assert.Equal("zero naira and one kobo", words);
+    }
+
+    [Fact]
     public void ToWords_AmountBeyondLongRangeInMinorUnits_ThrowsOverflowException()
     {
         decimal enormousAmount = 100_000_000_000_000_000_000m;

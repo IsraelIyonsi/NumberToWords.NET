@@ -51,7 +51,9 @@ string pounds = MoneyToWordsConverter.ToWords(2.05m, new CurrencyWords("pound", 
 // two pounds and five pence
 ```
 
-`MoneyToWordsConverter.ToWords` rounds the amount to two decimal places (away from zero at the midpoint) before conversion, so a rounding carry into the major unit is handled correctly: `1.995m` becomes "two naira", not "one naira and ninety-nine kobo point five". The minor-unit clause is omitted entirely when the rounded amount has no minor units, so `1234.00m` becomes "one thousand two hundred thirty-four naira" with no trailing "and zero kobo".
+`MoneyToWordsConverter.ToWords` rounds the amount to two decimal places (away from zero at the midpoint) before conversion, so a rounding carry into the major unit is handled correctly: `1.995m` becomes "two naira", not "one naira and ninety-nine kobo point five". This is the standard invoice/cheque rounding convention, and is deliberately **not** `MidpointRounding.ToEven` (banker's rounding), which is what `decimal.Round`/`Math.Round` use by default. If you reconcile amounts-in-words against a value you separately rounded with `Math.Round(amount, 2)`, expect a one-minor-unit difference exactly at the midpoint (for example `1.005m`: this library says "one dollar and one cent", `Math.Round` with its default `ToEven` says `1.00`).
+
+The minor-unit clause is omitted entirely when the rounded amount has no minor units, so `1234.00m` becomes "one thousand two hundred thirty-four naira" with no trailing "and zero kobo". A negative amount that rounds to zero major units, such as `-0.005m` (which rounds to -0.01), omits the zero-valued major clause rather than saying the nonsensical "negative zero naira": it becomes "negative one kobo".
 
 ## API
 
@@ -68,7 +70,7 @@ string pounds = MoneyToWordsConverter.ToWords(2.05m, new CurrencyWords("pound", 
 - `American` (default): `1234` becomes "one thousand two hundred thirty-four", `1001` becomes "one thousand one".
 - `British`: `1234` becomes "one thousand two hundred and thirty-four", `1001` becomes "one thousand and one".
 
-The style only changes where "and" appears inside the number itself. The word joining the currency's major and minor units, for example "... naira **and** fifty kobo", is always present when both units are nonzero, regardless of style.
+The style only changes where "and" appears inside the number itself. The word joining the currency's major and minor units, for example "... naira **and** fifty kobo", is always present when both units are nonzero, regardless of style. Because British style already inserts its own "and" before a final sub-hundred group, combining it with a nonzero minor-unit clause produces two consecutive "and"s: `MoneyToWordsConverter.ToWords(1000001.01m, style: NumberToWordsStyle.British)` becomes "one million and one naira and one kobo". This is the correct, unambiguous reading of both conventions applied independently, not a bug.
 
 ## Notes and limitations
 

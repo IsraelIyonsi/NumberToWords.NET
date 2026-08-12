@@ -14,10 +14,16 @@ public static class MoneyToWordsConverter
 
     /// <summary>
     /// Converts <paramref name="amount"/> to an amount-in-words phrase.
-    /// The amount is rounded to two decimal places (away from zero at the midpoint) before conversion,
+    /// The amount is rounded to two decimal places (away from zero at the midpoint, matching the standard
+    /// invoice/cheque convention rather than <see cref="MidpointRounding.ToEven"/>) before conversion,
     /// so a rounding carry into the major unit, such as 1.995 becoming "two dollars", is handled correctly.
+    /// Callers reconciling against <see cref="Math.Round(decimal, int)"/>'s banker's-rounding default should
+    /// expect a one-minor-unit difference exactly at the midpoint.
     /// The minor-unit clause is omitted when the rounded amount has no minor units, for example
     /// 1234.00 becomes "one thousand two hundred thirty-four naira" with no trailing "and zero kobo".
+    /// A negative amount whose magnitude is entirely minor units, such as -0.005 (which rounds to -0.01),
+    /// omits the zero-valued major clause instead of producing the awkward "negative zero naira", so it
+    /// becomes "negative one kobo" rather than "negative zero naira and one kobo".
     /// </summary>
     /// <param name="amount">The money amount to convert. Negative amounts are prefixed with "negative".</param>
     /// <param name="currency">The currency word set to use. Defaults to <see cref="CurrencyWords.NigerianNaira"/> when null.</param>
@@ -36,14 +42,27 @@ public static class MoneyToWordsConverter
         long majorUnits = totalMinorUnits / MinorUnitsPerMajorUnit;
         int minorUnits = (int)(totalMinorUnits % MinorUnitsPerMajorUnit);
 
-        string majorUnitName = majorUnits == SingularUnitCount ? currencyWords.MajorUnitSingularName : currencyWords.MajorUnitPluralName;
-        string phrase = NumberToWordsConverter.ToWords(majorUnits, style) + NumberWordConstants.Space + majorUnitName;
+        string minorUnitName = minorUnits == SingularUnitCount ? currencyWords.MinorUnitSingularName : currencyWords.MinorUnitPluralName;
+        string minorWords = NumberToWordsConverter.ToWords(minorUnits, style);
 
-        if (minorUnits != 0)
+        // A negative amount whose rounded major units are zero has no sensible "negative zero" to say;
+        // the sign is carried entirely by the minor-unit clause instead, for example "negative one kobo".
+        bool omitZeroMajorClause = isNegative && majorUnits == 0 && minorUnits != 0;
+
+        string phrase;
+        if (omitZeroMajorClause)
         {
-            string minorUnitName = minorUnits == SingularUnitCount ? currencyWords.MinorUnitSingularName : currencyWords.MinorUnitPluralName;
-            string minorWords = NumberToWordsConverter.ToWords(minorUnits, style);
-            phrase += NumberWordConstants.Space + NumberWordConstants.And + NumberWordConstants.Space + minorWords + NumberWordConstants.Space + minorUnitName;
+            phrase = minorWords + NumberWordConstants.Space + minorUnitName;
+        }
+        else
+        {
+            string majorUnitName = majorUnits == SingularUnitCount ? currencyWords.MajorUnitSingularName : currencyWords.MajorUnitPluralName;
+            phrase = NumberToWordsConverter.ToWords(majorUnits, style) + NumberWordConstants.Space + majorUnitName;
+
+            if (minorUnits != 0)
+            {
+                phrase += NumberWordConstants.Space + NumberWordConstants.And + NumberWordConstants.Space + minorWords + NumberWordConstants.Space + minorUnitName;
+            }
         }
 
         bool roundsToZero = totalMinorUnits == 0;
